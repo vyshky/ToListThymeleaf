@@ -14,15 +14,14 @@ public class TaskController {
         return "index";
     }
 
-    @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("task", new Task());
-        return "add";
+    @PostMapping("/add")
+    public String add(@ModelAttribute Task task) {
+        return "redirect:/";
     }
 
-    @PostMapping("/add")
-    public String add(@ModelAttribute Task task, Model model) {
-        System.out.println("PostAdd");
+    @GetMapping("/clear")
+    public String clear() {
+        System.out.println("Clear");
         return "redirect:/";
     }
 }
