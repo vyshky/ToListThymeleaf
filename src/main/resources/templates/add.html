@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<H1>HelloAdd</H1>
+<form action="#" th:action="@{/add}" th:object="${task}" method="post">
+    <input id="firstName" placeholder="Введите задачу" required type="text" th:field="*{name}"/>
+    </div>
+    <input type="submit" value="Add"/>
+</form>
+<a type="button" class="btn btn-primary" th:href="@{/}">Вернуться к списку задач</a>
+</body>
+</html>
