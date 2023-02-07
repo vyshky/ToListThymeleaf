@@ -5,12 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 
 @Controller
 public class TaskController {
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("task", new Task());
+        Task task = new Task();
+        task.setId(UUID.randomUUID());
+        task.setName("firstTask");
+        model.addAttribute("task", task);
         return "index";
     }
 
@@ -21,7 +26,6 @@ public class TaskController {
 
     @GetMapping("/clear")
     public String clear() {
-        System.out.println("Clear");
         return "redirect:/";
     }
 }
