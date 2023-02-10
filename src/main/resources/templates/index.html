@@ -10,13 +10,21 @@
 <body>
 
 <div class="container mb-3">
-    <lable th:text="${task.id}"></lable>
-    <form name="myForm" class="input-group mb-3" th:object="${task}" th:action="@{/add}" method="post">
-        <input name="taskName" type="text" required class="form-control" placeholder="Recipient's task" aria-describedby="button-addon2"/>
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
-        <button class="btn btn-outline-secondary" type="button" id="clear"><a th:href="@{/clear}">🗑</a></button>
+    <!--    <h1 th:text="${task.id}"></h1>-->
+    <form class="input-group mb-3" th:object="${task}" th:action="@{/add}" method="post">
+        <input name="name" type="text" required class="form-control" placeholder="Recipient's task"
+               aria-describedby="button-addon2"/>
+        <button class="btn btn-outline-secondary" type="submit">Add</button>
+        <button class="btn btn-outline-secondary" type="button"><a th:href="@{/clear}">🗑</a></button>
     </form>
-    <ul id="myList" class="list-group list-group-flush">
+    <ul th:each="task,iter : ${tasks}">
+        <li th:text="${1+iter.index +') '+ task.getName()}"></li>
+        <form method="post" class="input-group mb-3" th:object="${task}" th:action="@{/remove}">
+            <input name="id" required hidden="true" th:value="${task.getId()}"/>
+            <input name="name" required hidden="true" th:value="${task.getName()}"/>
+            <button class="btn btn-outline-secondary" type="submit">remove</button>
+            <!--            <button class="btn btn-outline-secondary" type="button" type="submit" name="delete" th:value="${task.getId()}" class="link-button">asfasfqwr</button>-->
+        </form>
     </ul>
 </div>
 
